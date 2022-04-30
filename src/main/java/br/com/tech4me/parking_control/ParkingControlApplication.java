@@ -1,4 +1,4 @@
-package br.com.tyech4me.parking_control;
+package br.com.tech4me.parking_control;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
