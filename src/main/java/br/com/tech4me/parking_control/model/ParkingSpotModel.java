@@ -9,11 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
-
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
 @Entity
-@Table(name="TB_PARKING_SPOT")
+@Table(name= "TB_PARKING_SPOT")
 public class ParkingSpotModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -33,7 +32,7 @@ public class ParkingSpotModel implements Serializable {
     // MARCA DO CARRO
     @Column(nullable = false, length = 70)
     private String brandCar;
-
+    
     // MODELO DO CARRO
     @Column(nullable = false, length = 70)
     private String modelCar;

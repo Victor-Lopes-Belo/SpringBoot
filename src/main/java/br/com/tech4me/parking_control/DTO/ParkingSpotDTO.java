@@ -1,7 +1,5 @@
 package br.com.tech4me.parking_control.DTO;
 
-import java.time.LocalDateTime;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
