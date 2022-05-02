@@ -7,7 +7,7 @@ import br.com.tech4me.parking_control.model.ParkingSpotModel;
 
 public interface ParkingSpotService {
 
-    // POST
+    // POST/ PUT
     ParkingSpotModel save(ParkingSpotModel parkingSpotModel);
 
     // GET

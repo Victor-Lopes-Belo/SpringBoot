@@ -16,7 +16,7 @@ public class ParkingSpotServiceIMPL implements ParkingSpotService {
     @Autowired
     private ParkingSpotRepository parkingSpotRepository;
 
-    // POST
+    // POST/ PUT
     @Override
     @Transactional
     public ParkingSpotModel save(ParkingSpotModel parkingSpotModel) {

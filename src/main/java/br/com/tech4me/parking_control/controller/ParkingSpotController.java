@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,7 +54,7 @@ public class ParkingSpotController {
 
     // GET /ID
     @GetMapping(value = "/{id}")
-    public ResponseEntity<List<Object>> getIdParkingSpot(@PathVariable UUID id) {
+    public ResponseEntity<List<Object>> getByIdParkingSpot(@PathVariable UUID id) {
 
         Optional<ParkingSpotModel> parkingSpotOptional = parkingSpotService.findById(id);
         if (parkingSpotOptional.isPresent()) {
@@ -71,6 +72,24 @@ public class ParkingSpotController {
         if (parkingSpotOptional.isPresent()) {
             parkingSpotService.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    // PUT
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Object> updateByIdParkingSpot(@PathVariable UUID id, @RequestBody @Valid ParkingSpotDTO parkingSpotDTO) {
+        
+        Optional<ParkingSpotModel> parkingSpotOptional = parkingSpotService.findById(id);
+        if (parkingSpotOptional.isPresent()) {
+
+            var parkingSpotModel = new ParkingSpotModel();
+
+            BeanUtils.copyProperties(parkingSpotDTO, parkingSpotModel);
+            parkingSpotModel.setRegistrationDate(parkingSpotOptional.get().getRegistrationDate());
+            parkingSpotModel.setId(parkingSpotOptional.get().getId());
+            parkingSpotModel = parkingSpotService.save(parkingSpotModel);
+            return new ResponseEntity<>(parkingSpotModel,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
