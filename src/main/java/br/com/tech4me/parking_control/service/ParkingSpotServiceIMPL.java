@@ -1,5 +1,8 @@
 package br.com.tech4me.parking_control.service;
 
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,5 +21,24 @@ public class ParkingSpotServiceIMPL implements ParkingSpotService {
     @Transactional
     public ParkingSpotModel save(ParkingSpotModel parkingSpotModel) {
         return parkingSpotRepository.save(parkingSpotModel);
+    }
+
+    //GET
+    @Override
+    public Object findAll() {
+        return parkingSpotRepository.findAll();
+    }
+
+    //GET BY ID
+    @Override
+    public Optional<ParkingSpotModel> findById(UUID id) {
+        return parkingSpotRepository.findById(id);
+    }
+
+    // DELETE BY ID
+    @Transactional
+    @Override
+    public void deleteById(UUID id) {
+        parkingSpotRepository.deleteById(id);
     }
 }
